@@ -1,0 +1,20 @@
+[
+  {
+    "perfil": "autoridade",
+    "agente": "Franz Junior",
+    "matricula": "00001",
+    "unidade": "PMRJ",
+    "email": "franz@gmail.com",
+    "senha": "demo123",
+    "telefone": "(67) 99988-7766"
+  },
+  {
+    "perfil": "autoridade",
+    "agente": "Andrey Gaspar",
+    "matricula": "0001",
+    "unidade": "PMRJ",
+    "email": "andrey@gmail.com",
+    "senha": "demo123",
+    "telefone": "(67) 99988-7766"
+  }
+]

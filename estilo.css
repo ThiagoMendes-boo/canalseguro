@@ -1,0 +1,248 @@
+/* ========== CANAL SEGURO: estilo.css (visual moderno) ========== */
+/* Lido pelo layout.py. As cores usam transparência para funcionar */
+/* tanto no tema claro quanto no escuro do Streamlit. */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* ----- Cores e medidas (mude aqui para trocar o tema do app) ----- */
+:root {
+    --acento: #6366f1;
+    --acento-2: #8b5cf6;
+    --ciano: #22d3ee;
+    --perigo: #ef4444;
+    --borda: rgba(128, 128, 128, .25);
+    --vidro: rgba(128, 128, 128, .07);
+    --sombra: 0 12px 32px -14px rgba(0, 0, 0, .45);
+    --raio: 16px;
+    --gradiente: linear-gradient(135deg, var(--acento), var(--acento-2));
+}
+
+/* ----- Página ----- */
+html, body, .stApp,
+.stApp [class*="st-"]:not([data-testid="stIconMaterial"]):not([class*="material"]) {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Os ícones do Streamlit (setas, etc.) usam uma fonte própria de ícones. */
+/* Se ela for trocada, o nome do ícone aparece escrito (ex.: keyboard_double_arrow_left). */
+[data-testid="stIconMaterial"], .material-icons, .material-symbols-rounded,
+[class*="material-symbols"] {
+    font-family: "Material Symbols Rounded", "Material Symbols Outlined", "Material Icons" !important;
+}
+.stApp {
+    background-image:
+        radial-gradient(900px 420px at 8% -8%, rgba(99, 102, 241, .20), transparent 60%),
+        radial-gradient(700px 420px at 100% 0%, rgba(34, 211, 238, .13), transparent 60%);
+    background-attachment: fixed;
+}
+.block-container {max-width: 800px; padding-top: 2.2rem; padding-bottom: 4rem;}
+footer {visibility: hidden;}
+
+/* O JavaScript roda dentro de um iframe invisível: aqui escondemos o espaço dele */
+div[data-testid="stElementContainer"]:has(iframe[height="0"]) {display: none;}
+
+/* Barra de rolagem fina */
+::-webkit-scrollbar {width: 10px; height: 10px;}
+::-webkit-scrollbar-thumb {background: rgba(128, 128, 128, .35); border-radius: 999px;}
+
+/* ----- Cabeçalho ----- */
+.hero {text-align: center; padding: .5rem 0 1.2rem;}
+.hero .icone {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 4.4rem; height: 4.4rem; font-size: 2.2rem; line-height: 1;
+    border-radius: 22px; background: var(--gradiente);
+    box-shadow: 0 14px 30px -10px rgba(99, 102, 241, .7);
+}
+.hero h1 {
+    font-size: 2.6rem; font-weight: 800; letter-spacing: -.03em;
+    margin: .8rem 0 .3rem; padding: 0;
+    background: linear-gradient(90deg, var(--acento), #a855f7 55%, var(--ciano));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+}
+.hero p {opacity: .75; margin: 0; font-size: 1.05rem;}
+
+/* ----- Abas (formato de pílula) ----- */
+.stTabs [data-baseweb="tab-list"] {
+    gap: .3rem; justify-content: center; width: fit-content; margin: 0 auto;
+    padding: .3rem; border-radius: 999px; background: var(--vidro);
+    border: 1px solid var(--borda);
+}
+.stTabs [data-baseweb="tab-highlight"],
+.stTabs [data-baseweb="tab-border"] {display: none;}
+.stTabs [data-baseweb="tab"] {
+    height: auto; padding: .5rem 1.2rem; border-radius: 999px;
+    font-weight: 600; transition: background .2s ease, color .2s ease;
+}
+.stTabs [data-baseweb="tab"]:hover {background: rgba(99, 102, 241, .12);}
+.stTabs [data-baseweb="tab"][aria-selected="true"] {
+    background: var(--gradiente);
+    box-shadow: 0 8px 18px -8px rgba(99, 102, 241, .8);
+}
+.stTabs [data-baseweb="tab"][aria-selected="true"],
+.stTabs [data-baseweb="tab"][aria-selected="true"] * {color: #fff;}
+
+/* Conteúdo de cada aba vira um cartão de vidro */
+.stTabs [data-baseweb="tab-panel"] {
+    background: var(--vidro); border: 1px solid var(--borda);
+    border-radius: 22px; padding: 1.4rem 1.5rem; margin-top: 1rem;
+    box-shadow: var(--sombra); backdrop-filter: blur(8px);
+}
+
+/* ----- Campos de formulário ----- */
+[data-baseweb="input"], [data-baseweb="textarea"], [data-baseweb="select"] > div {
+    border-radius: 12px; transition: box-shadow .2s ease, border-color .2s ease;
+}
+[data-baseweb="input"]:focus-within,
+[data-baseweb="textarea"]:focus-within,
+[data-baseweb="select"] > div:focus-within {
+    border-color: var(--acento);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, .28);
+}
+
+/* ----- Botões ----- */
+div.stButton > button,
+div[data-testid="stFormSubmitButton"] > button,
+div[data-testid="stDownloadButton"] > button {
+    width: 100%; border: 0; border-radius: 12px; padding: .65rem 1rem;
+    font-weight: 600; background: var(--gradiente);
+    box-shadow: 0 10px 22px -12px rgba(99, 102, 241, .9);
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+div.stButton > button, div.stButton > button p,
+div[data-testid="stFormSubmitButton"] > button p,
+div[data-testid="stDownloadButton"] > button,
+div[data-testid="stDownloadButton"] > button p {color: #fff;}
+div.stButton > button:hover,
+div[data-testid="stDownloadButton"] > button:hover {
+    transform: translateY(-2px); filter: brightness(1.08);
+    box-shadow: 0 16px 26px -12px rgba(99, 102, 241, .95);
+}
+div.stButton > button:active {transform: translateY(0);}
+
+/* Botões da barra lateral ficam discretos (contorno) */
+section[data-testid="stSidebar"] div.stButton > button {
+    background: transparent; border: 1px solid var(--borda); box-shadow: none;
+}
+section[data-testid="stSidebar"] div.stButton > button,
+section[data-testid="stSidebar"] div.stButton > button p {color: inherit;}
+section[data-testid="stSidebar"] div.stButton > button:hover {
+    border-color: var(--acento); background: rgba(99, 102, 241, .10);
+}
+
+/* ----- Barra lateral, métricas, avisos e progresso ----- */
+section[data-testid="stSidebar"] {border-right: 1px solid var(--borda);}
+[data-testid="stMetric"] {
+    background: var(--vidro); border: 1px solid var(--borda);
+    border-radius: var(--raio); padding: .9rem 1.1rem;
+}
+[data-testid="stAlert"] {border-radius: 14px;}
+[data-testid="stProgress"] div[role="progressbar"] > div > div {background: var(--gradiente);}
+
+/* ----- Caixas de aviso ----- */
+.nota, .alerta-emergencia {
+    padding: .7rem 1rem; border-radius: 14px; margin-bottom: 1rem;
+    font-size: .92rem; border: 1px solid transparent;
+}
+.nota {
+    background: rgba(99, 102, 241, .10); border-color: rgba(99, 102, 241, .30);
+    border-left: 4px solid var(--acento);
+}
+.alerta-emergencia {
+    margin: 1rem 0; background: rgba(239, 68, 68, .10);
+    border-color: rgba(239, 68, 68, .30); border-left: 4px solid var(--perigo);
+}
+
+/* ----- Cartões de relato (painel da autoridade) ----- */
+.cartao {
+    background: var(--vidro); border: 1px solid var(--borda);
+    border-radius: var(--raio); padding: .85rem 1.1rem; margin-bottom: .7rem;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+.cartao:hover {transform: translateY(-2px); box-shadow: var(--sombra);}
+.cartao.alta {border-left: 5px solid var(--perigo); background: rgba(239, 68, 68, .07);}
+.cartao-topo {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: .4rem; margin-bottom: .25rem;
+}
+.cartao small {opacity: .7;}
+
+/* ----- Selos coloridos ----- */
+.selo {
+    display: inline-block; padding: .2rem .7rem; margin-left: .3rem;
+    border-radius: 999px; font-size: .74rem; font-weight: 700;
+    letter-spacing: .03em; text-transform: uppercase; color: #fff;
+    box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .5);
+}
+
+/* ----- Protocolo (clique para copiar: o JavaScript faz isso) ----- */
+.protocolo {
+    position: relative; cursor: pointer; text-align: center;
+    font-family: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    font-size: 1.9rem; font-weight: 700; letter-spacing: .14em;
+    padding: 1rem; margin: .7rem 0 .25rem;
+    border: 2px dashed var(--acento); border-radius: 18px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, .14), rgba(34, 211, 238, .10));
+    transition: transform .15s ease;
+}
+.protocolo:hover {transform: scale(1.015);}
+.protocolo.copiado::after {
+    content: "Copiado!"; position: absolute; right: .8rem; top: .6rem;
+    font-family: "Inter", sans-serif; font-size: .72rem; font-weight: 700;
+    letter-spacing: 0; padding: .15rem .6rem; border-radius: 999px;
+    background: #16a34a; color: #fff;
+}
+.protocolo-dica {text-align: center; font-size: .8rem; opacity: .6; margin-bottom: .9rem;}
+
+/* ----- Tela de início ----- */
+.grade-cartoes {
+    display: grid; gap: 1rem; margin: 1.2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.cartao-info {
+    background: var(--vidro); border: 1px solid var(--borda);
+    border-radius: 20px; padding: 1.3rem 1.1rem; text-align: center;
+    backdrop-filter: blur(6px);
+}
+.cartao-info .emoji {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 3.2rem; height: 3.2rem; font-size: 1.6rem; margin-bottom: .5rem;
+    border-radius: 16px; background: rgba(99, 102, 241, .15);
+}
+.cartao-info b {display: block; font-size: 1.02rem;}
+.cartao-info p {margin: .35rem 0 0; font-size: .87rem; opacity: .78; line-height: 1.45;}
+
+.estatisticas {display: flex; justify-content: center; gap: 3rem; margin: 1.4rem 0;}
+.estatistica {text-align: center;}
+.estatistica b {
+    display: block; font-size: 2.6rem; font-weight: 800; line-height: 1.1;
+    background: linear-gradient(90deg, var(--acento), var(--ciano));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+}
+.estatistica span {font-size: .85rem; opacity: .7;}
+
+/* ----- Animação de entrada (o JavaScript adiciona a classe "visivel") ----- */
+/* Se o JavaScript não funcionar, o "aparecer" mostra tudo depois de 2 segundos. */
+.revelar {
+    opacity: 0; transform: translateY(16px);
+    transition: opacity .55s ease, transform .55s ease, box-shadow .2s ease;
+    animation: aparecer .01s 2s forwards;
+}
+.revelar.visivel {opacity: 1; transform: none; animation: none;}
+.cartao-info.revelar.visivel:hover {transform: translateY(-5px); box-shadow: var(--sombra);}
+@keyframes aparecer {to {opacity: 1; transform: none;}}
+
+/* ----- Celular ----- */
+@media (max-width: 640px) {
+    .hero h1 {font-size: 2rem;}
+    .estatisticas {gap: 1.6rem;}
+    .estatistica b {font-size: 2.1rem;}
+    .protocolo {font-size: 1.4rem;}
+    .stTabs [data-baseweb="tab"] {padding: .45rem .8rem;}
+}
+
+/* Quem prefere menos movimento no sistema não vê as animações */
+@media (prefers-reduced-motion: reduce) {
+    * {transition: none !important; animation-duration: .01s !important;}
+}
